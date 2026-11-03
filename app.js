@@ -1,0 +1,21 @@
+const products=[
+{id:"tee",name:"The Starting Point Tee",category:"wear",type:"EVERYDAY / 01",price:29.00,shape:"tee",tone:"dark",mark:"DAYZERO"},
+{id:"mug",name:"Slow Morning Mug",category:"home",type:"HOME / 02",price:19.00,shape:"mug",tone:"light",mark:"TAKE IT SLOW"},
+{id:"tote",name:"Somewhere Tote",category:"gifts",type:"CARRY / 03",price:24.00,shape:"tote",tone:"light",mark:"GO SOMEWHERE"},
+{id:"hoodie",name:"The Off-Duty Hoodie",category:"wear",type:"EVERYDAY / 04",price:49.00,shape:"hoodie",tone:"dark",mark:"OFF DUTY"},
+{id:"ornament",name:"Keepsake Ornament",category:"gifts",type:"HOLIDAY / 05",price:16.00,shape:"ornament",tone:"dark",mark:"2026"},
+{id:"tee2",name:"New Chapter Tee",category:"wear",type:"EVERYDAY / 06",price:29.00,shape:"tee",tone:"light",mark:"NEW CHAPTER"},
+{id:"mug2",name:"A Little More Joy Mug",category:"home",type:"HOME / 07",price:20.00,shape:"mug",tone:"light",mark:"MORE JOY"},
+{id:"tote2",name:"The Weekend Tote",category:"gifts",type:"CARRY / 08",price:25.00,shape:"tote",tone:"dark",mark:"WEEKEND"}
+];
+let cart=JSON.parse(localStorage.getItem("dayzero-cart")||"{}");
+const money=n=>"$"+n.toFixed(2);
+function renderProducts(filter="all"){const grid=document.getElementById("productGrid");grid.innerHTML="";products.filter(p=>filter==="all"||p.category===filter).forEach(p=>{const card=document.createElement("article");card.className="product-card";card.innerHTML=`<div class="product-art ${p.tone}"><div class="shape ${p.shape}"></div><div class="mark">${p.mark}</div></div><div class="product-info"><div class="type">${p.type}</div><h3>${p.name}</h3><div class="price">${money(p.price)}</div><button class="add-btn" data-add="${p.id}">ADD TO BAG +</button></div>`;grid.appendChild(card)});}
+function save(){localStorage.setItem("dayzero-cart",JSON.stringify(cart));renderCart()}
+function renderCart(){let count=0,total=0;Object.entries(cart).forEach(([id,q])=>{const p=products.find(x=>x.id===id);if(p){count+=q;total+=p.price*q}});document.getElementById("cartCount").textContent=count;document.getElementById("drawerCount").textContent=`(${count})`;document.getElementById("subtotal").textContent=money(total);const root=document.getElementById("cartItems");root.innerHTML="";if(!count){root.innerHTML='<p class="empty">Your bag is waiting for something good.</p>'}else{Object.entries(cart).forEach(([id,q])=>{const p=products.find(x=>x.id===id);if(!p)return;const row=document.createElement("div");row.className="cart-row";row.innerHTML=`<div class="cart-thumb">${p.mark}</div><div><h4>${p.name}</h4><small>${money(p.price)}</small><div class="qty"><button data-qty="${id}" data-delta="-1">−</button><span>${q}</span><button data-qty="${id}" data-delta="1">+</button></div></div><strong>${money(p.price*q)}</strong>`;root.appendChild(row)})}}
+document.addEventListener("click",e=>{const add=e.target.closest("[data-add]");if(add){const id=add.dataset.add;cart[id]=(cart[id]||0)+1;save();add.textContent="ADDED ✓";setTimeout(()=>add.textContent="ADD TO BAG +",1000)}const qty=e.target.closest("[data-qty]");if(qty){const id=qty.dataset.qty;cart[id]=(cart[id]||0)+Number(qty.dataset.delta);if(cart[id]<=0)delete cart[id];save()}});
+document.querySelectorAll(".filter").forEach(b=>b.addEventListener("click",()=>{document.querySelectorAll(".filter").forEach(x=>x.classList.remove("active"));b.classList.add("active");renderProducts(b.dataset.filter)}));
+const drawer=document.getElementById("cartDrawer"),backdrop=document.getElementById("backdrop");function openCart(){drawer.classList.add("open");backdrop.classList.add("open")}function closeCart(){drawer.classList.remove("open");backdrop.classList.remove("open")}document.getElementById("cartOpen").onclick=openCart;document.getElementById("cartClose").onclick=closeCart;backdrop.onclick=closeCart;
+document.getElementById("checkout").onclick=()=>alert("Checkout is not connected yet. Add verified Stripe payment links and confirmed Printful products before accepting orders.");
+document.getElementById("newsletterForm").addEventListener("submit",e=>{e.preventDefault();document.getElementById("newsletterMsg").textContent="Thanks for your interest. Connect an email platform to collect subscribers.";});
+renderProducts();renderCart();

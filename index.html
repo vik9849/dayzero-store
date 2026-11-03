@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="DAYZERO — thoughtful gifts and everyday essentials for the holiday season and beyond.">
+<title>DAYZERO — The Holiday Edit</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="announcement">THE HOLIDAY EDIT IS HERE <span>—</span> THOUGHTFUL FINDS, EVERY DAY</div>
+<header class="header">
+  <a class="wordmark" href="#">DAYZERO<span>®</span></a>
+  <nav><a href="#shop">Shop</a><a href="#story">Our story</a><a href="#faq">FAQ</a></nav>
+  <button class="cart-trigger" id="cartOpen" aria-label="Open shopping bag">BAG <span id="cartCount">0</span></button>
+</header>
+<main>
+<section class="hero">
+  <div class="hero-copy">
+    <p class="eyebrow">THE 2026 HOLIDAY EDIT</p>
+    <h1>Give a little<br><em>meaning.</em></h1>
+    <p class="hero-text">Considered gifts. Everyday favourites. A fresh start, whenever you need one.</p>
+    <a class="button button-light" href="#shop">Explore the collection <span>↗</span></a>
+    <p class="hero-note">DESIGNED FOR THE MOMENTS THAT MATTER.</p>
+  </div>
+  <div class="hero-art" role="img" aria-label="Editorial holiday gift still life">
+    <div class="art-glow"></div><div class="gift gift-one"></div><div class="gift gift-two"></div>
+    <div class="ornament"></div><div class="art-label">A THOUGHTFUL<br>THING, WELL MADE.</div>
+  </div>
+</section>
+<section class="ticker"><span>GIVE WELL</span><b>✳</b><span>LIVE LIGHTLY</span><b>✳</b><span>START ANYWHERE</span><b>✳</b><span>GIVE WELL</span></section>
+<section class="intro" id="story"><p class="eyebrow">A NOTE FROM DAYZERO</p><h2>Good things don't need<br> a special occasion.</h2><p>We believe the best gifts are the ones that become part of everyday life. Explore a small, considered collection made for giving, keeping and starting something new.</p></section>
+<section class="shop-section" id="shop">
+  <div class="section-head"><div><p class="eyebrow">THE COLLECTION / 001</p><h2>Find your kind of good.</h2></div><div class="filters" id="filters"><button class="filter active" data-filter="all">All</button><button class="filter" data-filter="wear">Wear</button><button class="filter" data-filter="home">Home</button><button class="filter" data-filter="gifts">Gifts</button></div></div>
+  <div class="product-grid" id="productGrid"></div>
+</section>
+<section class="feature">
+ <div class="feature-image"><div class="feature-circle">THE<br>EVERYDAY<br>GIFT GUIDE</div></div>
+ <div class="feature-copy"><p class="eyebrow">LESS SCROLLING. BETTER GIFTING.</p><h2>For the people<br>who make it count.</h2><p>From quiet mornings to big plans, find a useful little something for the people you appreciate — including yourself.</p><a href="#shop" class="text-link">SHOP THE EDIT ↗</a></div>
+</section>
+<section class="newsletter"><p class="eyebrow">A GOOD THING, OCCASIONALLY</p><h2>Stay in the loop.</h2><p>New drops, gift inspiration and notes from DAYZERO.</p><form id="newsletterForm"><input type="email" placeholder="Your email address" required><button type="submit">JOIN ↗</button></form><small id="newsletterMsg">No spam. Just the good stuff.</small></section>
+</main>
+<footer id="faq"><div class="footer-top"><a class="wordmark" href="#">DAYZERO<span>®</span></a><p>Made for the ones who move differently.</p></div><div class="footer-bottom"><span>© 2026 DAYZERO. All rights reserved.</span><span>Contact: hello@dayzero.store (replace before launch)</span><span>Shipping & returns · Privacy</span></div><p class="disclaimer">Independent concept storefront. Product availability, prices, shipping estimates and checkout are not active until configured with your fulfilment and payment accounts.</p></footer>
+<div class="drawer-backdrop" id="backdrop"></div>
+<aside class="cart-drawer" id="cartDrawer" aria-label="Shopping bag">
+ <div class="drawer-head"><h2>Your bag <span id="drawerCount">(0)</span></h2><button id="cartClose" aria-label="Close bag">✕</button></div>
+ <div id="cartItems" class="cart-items"><p class="empty">Your bag is waiting for something good.</p></div>
+ <div class="drawer-foot"><div class="subtotal"><span>Subtotal</span><strong id="subtotal">$0.00</strong></div><p>Shipping and taxes calculated at checkout.</p><button id="checkout" class="button button-dark" disabled>Checkout <span>↗</span></button><small id="checkoutNote">Checkout will be enabled after Stripe payment links are connected.</small></div>
+</aside>
+<script src="app.js"></script>
+</body></html>
